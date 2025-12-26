@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ian Menachery - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #0a0a0a;
+            --card: #1a1a1a;
+            --text: #e8e8e8;
+            --text-dim: #a0a0a0;
+            --accent: #3b82f6;
+            --border: #2a2a2a;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        /* Header */
+        header {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+        
+        .links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        .links a:hover {
+            opacity: 0.7;
+        }
+        
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .about p {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        /* Experience */
+        .experience-item {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .experience-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .company {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .meta {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .description {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+        
+        .experience-item ul {
+            list-style: none;
+            color: var(--text-dim);
+        }
+        
+        .experience-item li {
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .experience-item li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .project {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .project:hover {
+            transform: translateX(5px);
+        }
+        
+        .project h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .project p {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+        
+        .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech span {
+            background: var(--bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-group {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .skill-group h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-group ul {
+            list-style: none;
+        }
+        
+        .skill-group li {
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 2rem 1.5rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- EDIT YOUR INFO BELOW -->
+        
+        <header>
+            <h1>Ian Menachery</h1>
+            <div class="subtitle">Data Science & Economics | Northeastern University</div>
+            <p class="description">Junior studying Data Science and Economics, incoming Technology Consulting Intern at EY</p>
+            <div class="links">
+                <a href="mailto:menachery.i@northeastern.edu">Email</a>
+                <a href="https://www.linkedin.com/in/ian-menachery/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/ian-menachery" target="_blank">GitHub</a>
+            </div>
+        </header>
+
+        <section class="about">
+            <h2>About</h2>
+            <p>I'm a junior at Northeastern University studying Data Science and Economics, with a focus on quantitative analysis and strategic problem-solving. My interests span technology consulting, data science, and quantitative finance.</p>
+            <p>Currently, I work as a Reporting Analyst Co-Op at Sun Life, where I develop automated reporting solutions using SQL, Tableau, and SSRS. I'm passionate about optimizing complex systems and turning data into actionable insights.</p>
+            <p>Outside of work and academics, I'm involved in Delta Kappa Epsilon fraternity as Real Estate Chair, and I enjoy exploring poker, probability puzzles, and quantitative analysis.</p>
+        </section>
+
+        <section class="experience">
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Technology Consulting Intern</h3>
+                <div class="company">EY (Ernst & Young)</div>
+                <div class="meta">New York City, NY | Summer 2026 (Incoming)</div>
+                <p class="description">Incoming intern with EY's SAP practice, focusing on enterprise technology solutions and digital transformation.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Reporting Analyst Co-Op</h3>
+                <div class="company">Sun Life</div>
+                <div class="meta">Wellesley, MA | July 2024 - Present</div>
+                <p class="description">Developing automated reporting solutions and optimizing data pipelines for enterprise reporting systems.</p>
+                <ul>
+                    <li>Build and optimize SQL queries for automated reporting workflows</li>
+                    <li>Develop interactive Tableau dashboards for business intelligence</li>
+                    <li>Debug and enhance ETL pipelines and SSRS reports</li>
+                    <li>Collaborate with cross-functional teams to deliver data solutions</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Operations Associate</h3>
+                <div class="company">Town of Greenwich</div>
+                <div class="meta">Greenwich, CT | Summer 2023</div>
+                <p class="description">Managed beach and park operations with focus on cross-functional coordination.</p>
+                <ul>
+                    <li>Coordinated operations across multiple municipal facilities</li>
+                    <li>Implemented process improvements for efficiency gains</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project">
+                    <h3>AI Stock Sentiment Analyzer</h3>
+                    <p>Built an automated sentiment analysis tool using GPT-4 API to analyze earnings calls and financial news, generating trading signals with statistical validation and backtesting capabilities.</p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>GPT-4 API</span>
+                        <span>Statistical Analysis</span>
+                        <span>Backtesting</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h3>Movie Revenue Regression Model</h3>
+                    <p>Developed a regression model to predict movie revenue using various features like budget, genre, and release timing, with comprehensive statistical validation.</p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>Regression Analysis</span>
+                        <span>Data Visualization</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h3>Poker Probability Analysis</h3>
+                    <p>Statistical analysis of poker hand probabilities and optimal decision-making strategies using probability theory and Monte Carlo simulation.</p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>Probability Theory</span>
+                        <span>Monte Carlo Simulation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>R</li>
+                        <li>Java</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Data & Analytics</h3>
+                    <ul>
+                        <li>Tableau</li>
+                        <li>SSRS</li>
+                        <li>ETL Pipelines</li>
+                        <li>Statistical Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Tools & Technologies</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>AWS</li>
+                        <li>Excel/VBA</li>
+                        <li>Power BI</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Business</h3>
+                    <ul>
+                        <li>Technology Consulting</li>
+                        <li>Process Optimization</li>
+                        <li>Financial Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Ian Menachery</p>
+        </footer>
+    </div>
+</body>
+</html>
