@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ian Menachery - Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500;700&display=swap');
         
         * {
             margin: 0;
@@ -14,250 +14,564 @@
         }
         
         :root {
-            --bg: #0a0a0a;
-            --card: #1a1a1a;
-            --text: #e8e8e8;
-            --text-dim: #a0a0a0;
-            --accent: #3b82f6;
-            --border: #2a2a2a;
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --text: #f1f1f1;
+            --text-secondary: #b8b8b8;
+            --bg: #0f0f1e;
+            --card: #1a1a2e;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'DM Sans', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        
-        /* Header */
-        header {
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-        }
-        
-        .links {
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
             display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
         }
         
-        .links a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: opacity 0.2s;
+        nav.scrolled {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
-        .links a:hover {
-            opacity: 0.7;
-        }
-        
-        /* Sections */
-        section {
-            margin-bottom: 4rem;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+        .logo {
+            font-family: 'Newsreader', serif;
+            font-size: 1.5rem;
             font-weight: 600;
+            font-style: italic;
+            color: var(--text);
+            text-decoration: none;
         }
         
-        .about p {
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
-        }
-        
-        /* Experience */
-        .experience-item {
-            background: var(--card);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 3px solid var(--accent);
-        }
-        
-        .experience-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .company {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        
-        .meta {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .description {
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-        }
-        
-        .experience-item ul {
+        .nav-links {
+            display: flex;
+            gap: 2rem;
             list-style: none;
-            color: var(--text-dim);
         }
         
-        .experience-item li {
-            padding-left: 1.2rem;
-            margin-bottom: 0.5rem;
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
             position: relative;
         }
         
-        .experience-item li:before {
-            content: "→";
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--highlight);
+        }
+        
+        .nav-links a::after {
+            content: '';
             position: absolute;
+            bottom: -4px;
             left: 0;
-            color: var(--accent);
+            width: 0;
+            height: 2px;
+            background: var(--highlight);
+            transition: width 0.3s;
         }
         
-        /* Projects */
-        .projects-grid {
-            display: grid;
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(15, 52, 96, 0.15), transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(233, 69, 96, 0.1), transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--highlight) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
             gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
-        .project {
-            background: var(--card);
-            padding: 1.5rem;
+        .btn {
+            padding: 1rem 2rem;
             border-radius: 8px;
-            transition: transform 0.2s;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
         
-        .project:hover {
-            transform: translateX(5px);
+        .btn-primary {
+            background: var(--highlight);
+            color: white;
         }
         
-        .project h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+        .btn-primary:hover {
+            background: #d63850;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
         }
         
-        .project p {
-            color: var(--text-dim);
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Newsreader', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--highlight);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            gap: 2rem;
+            max-width: 800px;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        /* Experience Section */
+        .experience-list {
+            display: grid;
+            gap: 3rem;
+        }
+        
+        .experience-item {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--highlight);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .experience-header {
             margin-bottom: 1rem;
         }
         
-        .tech {
+        .experience-role {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-company {
+            font-size: 1.1rem;
+            color: var(--highlight);
+            margin-bottom: 0.3rem;
+        }
+        
+        .experience-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .experience-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .experience-highlights {
+            list-style: none;
+            display: grid;
+            gap: 0.5rem;
+        }
+        
+        .experience-highlights li {
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .experience-highlights li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--highlight);
+            font-size: 1.2rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--highlight);
+        }
+        
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
         
-        .tech span {
-            background: var(--bg);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
+        .tech-tag {
+            background: var(--accent);
+            color: var(--text);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
             font-size: 0.85rem;
-            color: var(--text-dim);
+            font-weight: 500;
         }
         
-        /* Skills */
+        /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
         
-        .skill-group {
+        .skill-category {
             background: var(--card);
-            padding: 1.5rem;
-            border-radius: 8px;
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 3px solid var(--highlight);
         }
         
-        .skill-group h3 {
-            font-size: 1.1rem;
+        .skill-category h3 {
+            font-size: 1.2rem;
             margin-bottom: 1rem;
+            color: var(--text);
         }
         
-        .skill-group ul {
-            list-style: none;
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
         }
         
-        .skill-group li {
-            color: var(--text-dim);
-            margin-bottom: 0.5rem;
+        .skill-item {
+            background: var(--accent);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 1.5rem;
+            background: var(--card);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .social-link:hover {
+            border-color: var(--highlight);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem 0;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
-            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 2rem 1.5rem; }
-            .skills-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- EDIT YOUR INFO BELOW -->
-        
-        <header>
-            <h1>Ian Menachery</h1>
-            <div class="subtitle">Data Science & Economics | Northeastern University</div>
-            <p class="description">Junior studying Data Science and Economics, incoming Technology Consulting Intern at EY</p>
-            <div class="links">
-                <a href="mailto:menachery.i@northeastern.edu">Email</a>
-                <a href="https://www.linkedin.com/in/ian-menachery/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/ian-menachery" target="_blank">GitHub</a>
-            </div>
-        </header>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#home" class="logo">Ian</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <section class="about">
-            <h2>About</h2>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ian Menachery</h1>
+            <div class="tagline">Data Science & Economics</div>
+            <div class="subtitle">Junior at Northeastern University | Incoming Technology Consulting Intern @ EY</div>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
             <p>I'm a junior at Northeastern University studying Data Science and Economics, with a focus on quantitative analysis and strategic problem-solving. My interests span technology consulting, data science, and quantitative finance.</p>
             <p>Currently, I work as a Reporting Analyst Co-Op at Sun Life, where I develop automated reporting solutions using SQL, Tableau, and SSRS. I'm passionate about optimizing complex systems and turning data into actionable insights.</p>
             <p>Outside of work and academics, I'm involved in Delta Kappa Epsilon fraternity as Real Estate Chair, and I enjoy exploring poker, probability puzzles, and quantitative analysis.</p>
-        </section>
+        </div>
+    </section>
 
-        <section class="experience">
-            <h2>Experience</h2>
-            
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-list">
             <div class="experience-item">
-                <h3>Technology Consulting Intern</h3>
-                <div class="company">EY (Ernst & Young)</div>
-                <div class="meta">New York City, NY | Summer 2026 (Incoming)</div>
-                <p class="description">Incoming intern with EY's SAP practice, focusing on enterprise technology solutions and digital transformation.</p>
+                <div class="experience-header">
+                    <h3 class="experience-role">Technology Consulting Intern</h3>
+                    <div class="experience-company">EY (Ernst & Young)</div>
+                    <div class="experience-meta">
+                        <span>New York City, NY</span>
+                        <span>•</span>
+                        <span>Summer 2026 (Incoming)</span>
+                    </div>
+                </div>
+                <p class="experience-description">Incoming intern with EY's SAP practice, focusing on enterprise technology solutions and digital transformation.</p>
             </div>
 
             <div class="experience-item">
-                <h3>Reporting Analyst Co-Op</h3>
-                <div class="company">Sun Life</div>
-                <div class="meta">Wellesley, MA | July 2024 - Present</div>
-                <p class="description">Developing automated reporting solutions and optimizing data pipelines for enterprise reporting systems.</p>
-                <ul>
+                <div class="experience-header">
+                    <h3 class="experience-role">Reporting Analyst Co-Op</h3>
+                    <div class="experience-company">Sun Life</div>
+                    <div class="experience-meta">
+                        <span>Wellesley, MA</span>
+                        <span>•</span>
+                        <span>July 2024 - Present</span>
+                    </div>
+                </div>
+                <p class="experience-description">Developing automated reporting solutions and optimizing data pipelines for enterprise reporting systems.</p>
+                <ul class="experience-highlights">
                     <li>Build and optimize SQL queries for automated reporting workflows</li>
                     <li>Develop interactive Tableau dashboards for business intelligence</li>
                     <li>Debug and enhance ETL pipelines and SSRS reports</li>
@@ -266,97 +580,172 @@
             </div>
 
             <div class="experience-item">
-                <h3>Operations Associate</h3>
-                <div class="company">Town of Greenwich</div>
-                <div class="meta">Greenwich, CT | Summer 2023</div>
-                <p class="description">Managed beach and park operations with focus on cross-functional coordination.</p>
-                <ul>
+                <div class="experience-header">
+                    <h3 class="experience-role">Operations Associate</h3>
+                    <div class="experience-company">Town of Greenwich</div>
+                    <div class="experience-meta">
+                        <span>Greenwich, CT</span>
+                        <span>•</span>
+                        <span>Summer 2023</span>
+                    </div>
+                </div>
+                <p class="experience-description">Managed beach and park operations with focus on cross-functional coordination.</p>
+                <ul class="experience-highlights">
                     <li>Coordinated operations across multiple municipal facilities</li>
                     <li>Implemented process improvements for efficiency gains</li>
+                    <li>Collaborated with diverse teams to enhance service delivery</li>
                 </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="projects">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project">
-                    <h3>AI Stock Sentiment Analyzer</h3>
-                    <p>Built an automated sentiment analysis tool using GPT-4 API to analyze earnings calls and financial news, generating trading signals with statistical validation and backtesting capabilities.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>GPT-4 API</span>
-                        <span>Statistical Analysis</span>
-                        <span>Backtesting</span>
-                    </div>
-                </div>
-
-                <div class="project">
-                    <h3>Movie Revenue Regression Model</h3>
-                    <p>Developed a regression model to predict movie revenue using various features like budget, genre, and release timing, with comprehensive statistical validation.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>Regression Analysis</span>
-                        <span>Data Visualization</span>
-                    </div>
-                </div>
-
-                <div class="project">
-                    <h3>Poker Probability Analysis</h3>
-                    <p>Statistical analysis of poker hand probabilities and optimal decision-making strategies using probability theory and Monte Carlo simulation.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>Probability Theory</span>
-                        <span>Monte Carlo Simulation</span>
-                    </div>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3 class="project-name">AI Stock Sentiment Analyzer</h3>
+                <p class="project-description">Built an automated sentiment analysis tool using GPT-4 API to analyze earnings calls and financial news, generating trading signals with statistical validation and backtesting capabilities.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">GPT-4 API</span>
+                    <span class="tech-tag">Statistical Analysis</span>
+                    <span class="tech-tag">Backtesting</span>
                 </div>
             </div>
-        </section>
 
-        <section class="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <h3>Programming</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>SQL</li>
-                        <li>R</li>
-                        <li>Java</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h3>Data & Analytics</h3>
-                    <ul>
-                        <li>Tableau</li>
-                        <li>SSRS</li>
-                        <li>ETL Pipelines</li>
-                        <li>Statistical Analysis</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h3>Tools & Technologies</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>AWS</li>
-                        <li>Excel/VBA</li>
-                        <li>Power BI</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h3>Business</h3>
-                    <ul>
-                        <li>Technology Consulting</li>
-                        <li>Process Optimization</li>
-                        <li>Financial Analysis</li>
-                    </ul>
+            <div class="project-card">
+                <h3 class="project-name">Movie Revenue Regression Model</h3>
+                <p class="project-description">Developed a regression model to predict movie revenue using various features like budget, genre, and release timing, with comprehensive statistical validation.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Regression Analysis</span>
+                    <span class="tech-tag">Data Visualization</span>
                 </div>
             </div>
-        </section>
 
-        <footer>
-            <p>© 2025 Ian Menachery</p>
-        </footer>
-    </div>
+            <div class="project-card">
+                <h3 class="project-name">Poker Probability Analysis</h3>
+                <p class="project-description">Statistical analysis of poker hand probabilities and optimal decision-making strategies using probability theory and Monte Carlo simulation.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Probability Theory</span>
+                    <span class="tech-tag">Monte Carlo Simulation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">SQL</span>
+                    <span class="skill-item">R</span>
+                    <span class="skill-item">Java</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data & Analytics</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Tableau</span>
+                    <span class="skill-item">SSRS</span>
+                    <span class="skill-item">ETL Pipelines</span>
+                    <span class="skill-item">Statistical Analysis</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Technologies</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Git</span>
+                    <span class="skill-item">AWS</span>
+                    <span class="skill-item">Excel/VBA</span>
+                    <span class="skill-item">Power BI</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Business</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Technology Consulting</span>
+                    <span class="skill-item">Process Optimization</span>
+                    <span class="skill-item">Financial Analysis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <p class="contact-text">
+                I'm always interested in connecting about new opportunities, interesting projects, or just having a conversation about data science and technology.
+            </p>
+            <div class="social-links">
+                <a href="mailto:menachery.i@northeastern.edu" class="social-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Email
+                </a>
+                <a href="https://www.linkedin.com/in/ian-menachery/" target="_blank" class="social-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/ian-menachery" target="_blank" class="social-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Ian Menachery. Built with care.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Update active nav link
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
